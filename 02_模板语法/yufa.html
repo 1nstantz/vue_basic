@@ -9,14 +9,29 @@
 </head>
 <body>
   <div id="root">
-    <h1>hello {{name}}</h1>
-  </div>
-  <div id="child">
-    <h1>hello,js</h1>
+    <!-- //在标签属性浅表加上v-bind表示绑定vue对象的值 -->
+    <!-- v-bind:可以简写为： -->
+    <!-- 标签里面写插值语法，属性写指令语法 -->
+    <a v-bind:href='url'>跳转百度</a>
+    <a :href='url'>跳转百度</a>
+    <a :href='url' :x='hello'>跳转百度</a>
+    <!-- 获取对象里的对象的属性用xxx.xxx的形势 -->
+    <h3>{{school.name}}</h3>
   </div>
 
   <script type="text/javascript">
     Vue.config.productionTip=false
+
+    new Vue({
+      el:'#root',
+      data:{
+        url:'http://www.baidu.com',
+        hello:'nihao',
+        school:{
+          name:'qinhao'
+        }
+      }
+    })
 
   </script>
 </body>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+  <div id="root">
+    <h1>nihao,{{name}}</h1>
+  </div>
+
+  <script type="text/javascript">
+   Vue.config.productionTip=false
+     const v=new Vue({
+        // el:'#root'
+        // data对象式写法
+        // data:{
+        //   name:'qinhao'
+        // }
+        //  data的函数式写法
+        data(){
+          return{
+            name:'qinhao'
+          }
+        }
+     })
+    //  vue原型的属性，另一种写法，不在vue对象里面指定  mount：挂载
+     v.$mount=('#root')
+  
+  </script>
+</body>
+</html>

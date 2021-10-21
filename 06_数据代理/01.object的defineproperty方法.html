@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let number=18
+    let person = {
+      name:'zhangsan',
+      sex:"男"
+    }
+    Object.defineProperty(person,'age',{
+      // value:18,
+      // enumerable:true,//控制添加的属性是否可以枚举，默认false
+      // writable:true,//控制添加的属性是否可以修改，默认false，
+      // configurable:ture//控制添加的属性是否可以删除，默认false，
+      
+      //有人读取person的age属性get被调用
+      //有人修改person的age属性set被调用
+      get(){
+        return number
+      },
+
+      set(value){
+        number=value
+      }
+    })
+    console.log(Object.keys(person))
+  </script>
+</body>
+</html>
