@@ -9,19 +9,28 @@
 </head>
 <body>
   <div id="root">
-   
+   <h2>欢迎{{name}}</h2>
+   <!-- .prevent  阻止跳转 -->
+   <!-- .stop  阻止事件冒泡 -->
+   <!-- .once  事件只触发一次 -->
+   <!-- 可以.prevent.stop  连着写 -->
+   <a href="http://www.baidu.com" @click.prevent='showInfo'>跳转百度</a>
   </div>
 
   <script type="text/javascript">
    Vue.config.productionTip=false
+
+
      new Vue({
-        el:'#root',
-        data:{
-          name:'qinhao'
-        },
-        methods:{
-          
+      el:'#root',
+      data:{
+        name:'qinhao'
+      },
+      methods:{
+        showInfo(){
+          alert('你好')
         }
+      }
      })
   </script>
 </body>

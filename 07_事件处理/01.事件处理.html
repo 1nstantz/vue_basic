@@ -9,19 +9,32 @@
 </head>
 <body>
   <div id="root">
-   
+   <h2>欢迎{{name}}</h2>
+   <button v-on:click='showInfo'>点击0</button>
+   <!-- 简写@click -->
+   <button @click='showInfo'>点击1</button>
+   <!-- 直接在括号里传参 -->
+   <button @click='showInfo1($event,22)'>点击2</button>
   </div>
 
   <script type="text/javascript">
    Vue.config.productionTip=false
+
+
      new Vue({
-        el:'#root',
-        data:{
-          name:'qinhao'
+      el:'#root',
+      data:{
+        name:'qinhao'
+      },
+      methods:{
+        showInfo(){
+          alert('nihao')
         },
-        methods:{
-          
+        showInfo1(event,number){
+          alert(event.target.innerText+number)
         }
+      }
+      
      })
   </script>
 </body>
