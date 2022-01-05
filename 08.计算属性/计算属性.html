@@ -18,7 +18,7 @@
    Vue.config.productionTip=false
 
 
-     new Vue({
+     var vm  = new Vue({
       el:'#root',
       data:{
         firstName:'qin',
@@ -27,7 +27,15 @@
       computed:{
         fullName:{
           get(){
-            return this.firstName+ this.lastName
+            console.log("get被调用")
+            return this.firstName+'-'+ this.lastName
+          },
+
+          set(v){
+            console.log("get被调用",v)
+            const arr = v.split('-')
+            this.firstName = arr[0]
+            this.lastName = arr[1]
           }
         }
         // 简写
