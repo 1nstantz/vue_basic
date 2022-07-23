@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+      <input type="checkbox" v-model="ok">同意</input>
+      <h1 v-if="ok">协议</h1>
+      <h2 v-else>no</h2>
+
+        <!-- v:show 条件指令 初始渲染开销大 -->
+      <h3 v-show="!ok">show：协议内容.</h3>
+      <h4 v-show="ok">no</h4>
+  </div>
+
+  <script type="text/javascript">
+   Vue.config.productionTip=false
+     new Vue({
+        el:'#app',
+        data:{
+          ok:false
+        },
+        methods:{
+          
+        }
+     })
+  </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript" src="vue.min.js"></script>
+  <script type="text/javascript" src="axios.min.js"></script>
+  <script type="text/javascript" src="element-ui/lib/index.js"></script>
+  <link rel="stylesheet" href="element-ui/lib/theme-chalk/index.css">
+
+</head>
+
+<body>
+  <div id="root">
+    <el-button type="primary" icon="el-icon-search" @click="getTeacherList">查询</el-button>
+    <el-table :data="teacherList" style="width: 100%">
+      <el-table-column prop="id" label="id" width="180">
+      </el-table-column>
+      <el-table-column prop="name" label="姓名" width="180">
+      </el-table-column>
+      <el-table-column prop="age" label="年龄">
+        <template slot-scope="scope">
+          <!-- <span v-if="scope.row.age <= 18">刚成年</span>
+          <span v-if="scope.row.age > 18">已成年</span> -->
+          {{scope.row.age>18 ? '已成年' : '未成年' }}
+        </template>
+      </el-table-column>
+    </el-table>
+  </div>
+
+  <script type="text/javascript">
+    Vue.config.productionTip = false
+    new Vue({
+      el: '#root',
+      data: {
+        teacherList: []
+      },
+      created() {
+        this.getTeacherList2()
+      },
+      methods: {
+        getTeacherList() {
+          console.log("获取讲师列表")
+          axios.get('http://localhost:8080/').then(response => {
+            console.log(response)
+            this.teacherList = response.data.data.rows
+          })
+        },
+        //基础配置
+        initRequest() {
+          return axios.create({
+            baseURL: 'http://localhost:8080',
+            timeout: 5000
+
+          }
+          )
+        },
+        //api调用
+        getTeacherListApi() {
+          //request是一个函数
+          let request = this.initRequest()
+          return request({
+            url: '/',
+            method: 'get'
+          })
+        },
+        //数据渲染
+        getTeacherList2() {
+          console.log('getTeacherList2执行')
+          this.getTeacherListApi().then(response => {
+            console.log(response)
+            this.teacherList = response.data.data.rows
+          }).catch(error => {
+            console.log(error)
+          })
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
